@@ -59,7 +59,7 @@ const TableRowPost = ({postProp, editar}) => {
                 <button onClick={handleConfirmarClick}>
                     <img src='/src/assets/confirm-icon.svg'/>
                 </button>
-                <button onClick={changeEdit}>
+                <button onClick={handleCancelarClick}>
                     <img src='/src/assets/cancel-icon.svg'/>
                 </button>
                 </td>
