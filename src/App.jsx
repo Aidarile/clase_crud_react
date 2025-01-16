@@ -38,6 +38,20 @@ function App() {
   setListaPost([...listaPosts, newPost])
   };
 
+  const handleEditarClick = (post) => {
+    setListaPost(listaPosts.map((p) => {
+      /* Si el id del post iterado es igual que el post que pasamos como parametro,
+      devolvemos el post pasado como parametro: */
+      if (p.id === post.id) {
+        return post;
+      } else {
+        /* Si el id del post iterado no es igual al post que pasamos como parametro,
+        devolvemos el post iterado: */
+        return p;
+      }
+    }));
+};
+
 
   return (
     <>
@@ -72,7 +86,7 @@ function App() {
           <tbody>
             {/* lista donde poder renderizar: */}
             {listaPosts.map((p) => (
-              <TableRowPost key = {p.id} postProp = {p}/>
+              <TableRowPost key = {p.id} postProp = {p} editar = {handleEditarClick}/>
 
             ))}
 

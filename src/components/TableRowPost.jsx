@@ -7,7 +7,7 @@ import { useState } from "react";
 
 // CON ESTE ARCHIVO CREAMOS LAS FILAS QUE SE VAN A MOSTRAR EN LA TABLA:
 
-const TableRowPost = ({postProp}) => {
+const TableRowPost = ({postProp, editar}) => {
     const [editMode, setEditMode] = useState (false);
     /*Variable de estado la cual va a permitir la modificación. 
     Su estado inicial debe ser el objeto de post para poder mostrar 
@@ -30,22 +30,33 @@ const TableRowPost = ({postProp}) => {
         setPostEdit({...postEdit, contenido: e.target.value})
     };
 
+    const handleConfirmarClick = () => {
+        editar(postEdit);
+        changeEdit();
+    };
+
+    const handleCancelarClick = () => {
+        changeEdit();
+        setPostEdit(postProp);
+
+    };
+
     
 
     if (editMode) {
         return (
             <tr> 
                 <td> 
-                    <input type="number" value={postEdit.idUsuario}/> 
+                    <input type="number" value={postEdit.idUsuario} onChange={handleIdUsuarioChange}/> 
                 </td>
                 <td>
-                    <input type="text" value={postEdit.titulo}/>
+                    <input type="text" value={postEdit.titulo} onChange={handleTituloChange}/>
                 </td>
                 <td>
-                    <input type="text" value={postEdit.contenido}/>
+                    <input type="text" value={postEdit.contenido} onChange={handleContenidoChange}/>
                 </td>
                 <td className="iconos">
-                <button onClick={changeEdit}>
+                <button onClick={handleConfirmarClick}>
                     <img src='/src/assets/confirm-icon.svg'/>
                 </button>
                 <button onClick={changeEdit}>
